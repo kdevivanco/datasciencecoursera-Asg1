@@ -1,4 +1,8 @@
-#this is the most difficult question bc of using a corr function that I had never seen before, and it wasnt in the lectures/videos
+# IMPORTANT!!! -->> I was having trouble reading the specdata file as is so I passed all the .csv files to my working directory project!! this is why when I call the function
+# I set my directory to "getwd()" instead of "specdata". 
+
+
+# this is the most difficult question bc of using a corr function that I had never seen before, and it wasnt in the lectures/videos
 # the first thing to do is read the function documentation
 
 ?corr
@@ -38,4 +42,6 @@ corr<- function(directory, threshold = 0) {
     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
 -0.21057 -0.04999  0.09463  0.12525  0.26844  0.76313 
 
-#this last test will only work if the specdata file with all the csv files are in your working directory (getwd())
+#this last test will only work if all the csv files are in your working directory (getwd())
+# IMPORTANT!!! -->> I was having trouble reading the specdata file as is so I passed all the .csv files to my working directory project!! this is why when I call the function
+# I set my directory to "getwd()" instead of "specdata". 
