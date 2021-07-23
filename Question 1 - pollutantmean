@@ -1,3 +1,6 @@
+# IMPORTANT!!! -->> I was having trouble reading the specdata file as is so I passed all the .csv files to my working directory project!! this is why when I call the function
+# I set my directory to "getwd()" instead of "specdata". 
+
 fileslist<-list.files(path=getwd(),pattern=".csv")
 fileslist ##this should give you a long list containing all csv files in specdata -> prints out many "00x.csv" in order
 
@@ -25,4 +28,6 @@ pollutantmean <- function(directory,pollutant, ID = 1:332){
 > pollutantmean(getwd(),"sulfate")
 [1] 3.189369
 
-#this will only work if the specdata file with all the csv files are in your working directory (getwd())
+#this will only work if all the csv files are in your working directory (getwd())
+# IMPORTANT!!! -->> I was having trouble reading the specdata file as is so I passed all the .csv files to my working directory project!! this is why when I call the function
+# I set my directory to "getwd()" instead of "specdata". 
