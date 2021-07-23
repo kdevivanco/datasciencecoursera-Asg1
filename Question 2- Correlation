@@ -1,0 +1,41 @@
+#this is the most difficult question bc of using a corr function that I had never seen before, and it wasnt in the lectures/videos
+# the first thing to do is read the function documentation
+
+?corr
+# cor(x, y = NULL, use = "everything",
+#    method = c("pearson", "kendall", "spearman"))
+
+# I still didnt understand so I searched the web for info, I recommend doing the same thing ... 
+# It is also important to understand the instructions: of all complete cases>0 we want the correlation btwn nitrate and sulfate for any given ID 
+# lets start... 
+
+corr<- function(directory, threshold = 0) {
+# differently to Q1 and Q3, I specified the path bc of problems running the functions in previous tests:
+  datacorr <- list.files(path = "/home/rstudio/Week 2/ASSIGNMENT - Air Quality") 
+  # Result vector created for storing the results...
+  result <- vector(mode = "numeric", length = 0) 
+  
+  for(i in 1:332) ## 1:332 <- IDS, dont know why IDs wasnt working as a variable so I textually assinged the number of files as so
+  {
+  ## first we need to clean the data from NA values
+    cleandata <- na.omit(read.csv(datacorr[i]))
+   #if cleandata is greater than the threshold (0) it is considered
+   if( nrow(cleandata) > threshold ) {
+      ## I applied the cor function for both pollutants... 
+      corvector <- cor(cleandata$sulfate, cleandata$nitrate)
+      result <- append(result,corvector) #used append function to store values as list
+    }
+  }
+  ## return the result
+  result
+} 
+
+#test the function... 
+> crtest2<-corr(getwd(),150)
+> head(crtest2)
+[1] -0.01895754 -0.14051254 -0.04389737 -0.06815956 -0.12350667 -0.07588814
+> summary(crtest2)
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+-0.21057 -0.04999  0.09463  0.12525  0.26844  0.76313 
+
+#this last test will only work if the specdata file with all the csv files are in your working directory (getwd())
