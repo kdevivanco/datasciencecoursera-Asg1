@@ -1,3 +1,6 @@
+# IMPORTANT!!! -->> I was having trouble reading the specdata file as is so I passed all the .csv files to my working directory project!! this is why when I call the function
+# I set my directory to "getwd()" instead of "specdata". 
+
 complete<-function(directory,ID = 1:332){
 # first we create the file list from where the .csv tables will be read
   filelist<-list.files(path=getwd(),pattern=".csv",full.names = TRUE)
@@ -20,4 +23,6 @@ complete<-function(directory,ID = 1:332){
   ids nobs
 1   1       117
 
-#this last step will only work if the specdata file with all the csv files are in your working directory (getwd())
+#this last step will only work if all the csv files are in your working directory (getwd())
+# IMPORTANT!!! -->> I was having trouble reading the specdata file as is so I passed all the .csv files to my working directory project!! this is why when I call the function
+# I set my directory to "getwd()" instead of "specdata". 
