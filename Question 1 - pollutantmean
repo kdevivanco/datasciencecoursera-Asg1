@@ -1,0 +1,28 @@
+fileslist<-list.files(path=getwd(),pattern=".csv")
+fileslist ##this should give you a long list containing all csv files in specdata -> prints out many "00x.csv" in order
+
+##once we have this we have to be able to read our enlisted .csv files... 
+directory<-lapply(practicelist,read.csv)
+directory ## will be a "large list, 332 elements)
+## you can check directory by printing it all or subsetting to open any .csv file of your choice by calling: 
+directory[x]
+
+#once this is done the function can be written out... 
+
+pollutantmean <- function(directory,pollutant, ID = 1:332){
+  listoffiles<-list.files(path=directory,pattern=".csv",full.names = TRUE)
+  values<-numeric()
+  for (i in ID){
+    data<-read.csv(listoffiles[i])
+    #now we want to retain the values for a certain pollutant, without erasing the values of the past file
+    #we use values to store the data like so...
+    values<-c(values,data[[pollutant]])
+  }
+  mean(values,na.rm=TRUE) #mean of all values but removing NA values
+}
+
+##function test:  
+> pollutantmean(getwd(),"sulfate")
+[1] 3.189369
+
+#this will only work if the specdata file with all the csv files are in your working directory (getwd())
