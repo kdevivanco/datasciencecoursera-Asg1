@@ -1,0 +1,23 @@
+complete<-function(directory,ID = 1:332){
+# first we create the file list from where the .csv tables will be read
+  filelist<-list.files(path=getwd(),pattern=".csv",full.names = TRUE)
+  nobs <-numeric() #empty variable for storing numeric (complete values) 
+  ids<-ID #changing name for assignment instructions, so this wil be the name of the column
+  
+  #for loop for reading the complete cases
+  for (i in ID){
+   #this next line of code can be broken into many steps, I preffered putting it all in one line
+   #it is best understood reading it from right to left: first file is read, from that file we take the complete cases
+   #once the complete cases are evaluated we sum the amount of cc in the file and store it as "numberofcorrectvalues"
+    numberofcorrectvalues<-sum(complete.cases(read.csv(filelist[i]))) 
+    nobs<-c(nobs,numberofcorrectvalues) #nobs will store all the numberofcorrectvalues in a list for then printing the data frame
+  }
+  data.frame(ids, nobs)
+}
+
+#testing the function .... 
+> complete("getwd()", 1)
+  ids nobs
+1   1       117
+
+#this last step will only work if the specdata file with all the csv files are in your working directory (getwd())
